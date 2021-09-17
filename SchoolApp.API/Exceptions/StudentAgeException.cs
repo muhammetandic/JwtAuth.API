@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace JwtAuth.API.Exceptions
 {
@@ -17,7 +14,7 @@ namespace JwtAuth.API.Exceptions
 
         }
 
-        public StudentAgeException(string message, Exception innerException) : base(message,innerException)
+        public StudentAgeException(string message, Exception innerException) : base(message, innerException)
         {
 
         }

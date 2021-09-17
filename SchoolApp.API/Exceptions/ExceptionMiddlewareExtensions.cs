@@ -21,7 +21,7 @@ namespace JwtAuth.API.Exceptions
 
                     context.Response.ContentType = "application/json";
                     context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                    if (contextFeature!=null)
+                    if (contextFeature != null)
                     {
                         var errorString = new ErrorResponse()
                         {

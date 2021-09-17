@@ -38,12 +38,12 @@ namespace SchoolApp.API.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterVm register)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
             var userExists = await _userManager.FindByEmailAsync(register.Email);
-            if(userExists!=null)
+            if (userExists != null)
             {
                 return BadRequest();
             }
@@ -57,7 +57,7 @@ namespace SchoolApp.API.Controllers
                 SecurityStamp = Guid.NewGuid().ToString()
             };
             var result = await _userManager.CreateAsync(newUser, register.Password);
-            if(result.Succeeded)
+            if (result.Succeeded)
             {
                 switch (register.Role)
                 {
@@ -82,14 +82,14 @@ namespace SchoolApp.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginVm login)
         {
-            if(!ModelState.IsValid)
-            { 
+            if (!ModelState.IsValid)
+            {
                 return BadRequest();
             }
-            var userExists = await  _userManager.FindByEmailAsync(login.Email);
-            if(userExists != null)
+            var userExists = await _userManager.FindByEmailAsync(login.Email);
+            if (userExists != null)
             {
-                if(await _userManager.CheckPasswordAsync(userExists, login.Password))
+                if (await _userManager.CheckPasswordAsync(userExists, login.Password))
                 {
                     var tokenValue = await GenerateJWTTokenAsync(userExists, null);
                     return Ok(tokenValue);

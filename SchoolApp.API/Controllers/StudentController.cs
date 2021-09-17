@@ -58,11 +58,11 @@ namespace SchoolApp.API.Controllers
         {
             try
             {
-                if(Regex.IsMatch(payload.FullName, @"^\d"))
+                if (Regex.IsMatch(payload.FullName, @"^\d"))
                 {
                     throw new StudentNameException("İsim harfle başlamalı", payload.FullName);
                 }
-                if(payload.DateOfBirth>DateTime.UtcNow.AddYears(-20))
+                if (payload.DateOfBirth > DateTime.UtcNow.AddYears(-20))
                 {
                     throw new StudentAgeException("Yaş en az yirmi olmalı");
                 }
