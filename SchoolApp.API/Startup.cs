@@ -1,3 +1,4 @@
+using JwtAuth.API.Exceptions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -6,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using SchoolApp.API.Data;
@@ -69,7 +71,7 @@ namespace SchoolApp.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
@@ -84,6 +86,8 @@ namespace SchoolApp.API
 
             app.UseAuthentication();
             app.UseAuthorization();
+            //app.ConfigureBuiltInExceptionHandler();
+            app.ConfigureCustomExceptionHandler(loggerFactory);
 
             app.UseEndpoints(endpoints =>
             {

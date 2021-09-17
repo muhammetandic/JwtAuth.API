@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using JwtAuth.API.Data.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SchoolApp.API.Data.Models;
 
@@ -10,5 +11,6 @@ namespace SchoolApp.API.Data
         {
         }
         public DbSet<RefreshToken> RefrshTokens { get; set; }
+        public DbSet<Student> Students { get; set; }
     }
 }
